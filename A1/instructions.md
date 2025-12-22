@@ -1,7 +1,5 @@
 # Assignment 1 - Static Web Page
 
-Due date: please check the markus: https://markus.teach.cs.toronto.edu/markus/courses/91/assignments/801Links to an external site.
-
 Introduction
 The objective of this assignment is to familiarize yourselves with the basics of HTML and CSS. You will learn how to build a basic static website using HTML and CSS by writing code to structure the content and style the appearance of their website. You will also learn how to use various HTML tags and CSS properties to add different elements and formatting to their website. Through this assignment, you will gain a foundational understanding of how to build and design web pages using these essential web development technologies.
 
