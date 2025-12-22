@@ -1,0 +1,13 @@
+{
+  "name": "csc309-t12-web-security-fall-2025",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.0"
+  }
+}

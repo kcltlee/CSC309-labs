@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2025
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSC309 A1 - Contact</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="current"><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+      <section class="contact-info">
+          <div class="photo-frame">
+            <img src="portrait.jpeg" alt="Picture" class="photo">
+          </div>
+          <h1 id="section-title">Kristen Lee</h1>
+          <a id="email-link" href="mailto:kristenc.lee@mail.utoronto.ca?subject=Bug%20Found&body=I%20found%20the%20following%20bug%20on%20your%20website:%0A%0A">
+            kristenc.lee@mail.utoronto.ca
+          </a>
+      </section>
+      <form class="form" action="https://postman-echo.com/post" method="post" enctype="multipart/form-data">
+
+        <div class="form-row">
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-row form-row-feedback">
+          <label for="feedback">Feedback:</label>
+          <textarea id="feedback" name="feedback" rows="4" placeholder="Enter your feedback here" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="attachments">Attachment:</label>
+          <input type="file" id="attachments" name="attachments" required>
+        </div>
+
+        <div class="form-row">
+          <input type="checkbox" id="consent" name="consent" value="yes" required>
+          <label for="consent">You agree to receive emails from me</label>
+        </div>
+        
+        <div class="form-row"></div>
+          <button class="button-feedback" type="submit">Send Feedback</button>
+        </div>
+      </form>
+    </main>
+    <footer>
+      Copyright 2025 by leekri13.
+    </footer>
+</body>
+</html>

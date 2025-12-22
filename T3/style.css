@@ -1,0 +1,117 @@
+#firstname {
+    font-weight: bold;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+.name{
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+.linkicons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none;
+
+}
+
+.current {
+    text-decoration: underline;
+    text-decoration-color: #e8797f;
+    text-decoration-thickness: 2px;
+    border-bottom: 2px solid #e8797f;
+    color: #e8797f;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 300px;
+    padding-right: 300px;
+    gap: 100px;
+    font-size: 15px;
+}
+
+#hero-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+}
+
+#courses-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#courses-section li{
+    font-size: 15px;
+    padding: 5px; 
+}
+
+.contact-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 500px;
+    box-sizing: border-box;
+}
+
+
+
+input[type="submit"] {
+    background-color: #636161;
+    color: white;
+    width: 100px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}

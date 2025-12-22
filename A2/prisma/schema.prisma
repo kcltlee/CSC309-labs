@@ -1,0 +1,143 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum RoleType {
+  regular
+  cashier
+  manager
+  superuser
+}
+
+enum TransactionType {
+  purchase
+  redemption
+  adjustment
+  event
+  transfer
+}
+
+enum PromotionType {
+  automatic
+  onetime
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  utorid      String        @unique
+  name        String?
+  password    String        @default("")
+  email       String        @unique
+  birthday    String?
+
+  role        RoleType      @default(regular)
+  verified    Boolean       @default(false)
+  activated   Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  expiresAt   DateTime?
+  resetToken  String?
+  lastLogin   DateTime?
+  avatarUrl   String?
+
+  points            Int             @default(0)
+  transactions      Transaction[]   @relation("UserTransactions")
+  transactionsMade  Transaction[]   @relation("TransactionsMade")
+  promotions        Promotion[]
+  suspicious        Boolean         @default(false)
+
+    // events relations
+  organizedEvents   Event[]         // events this user organizes (many-to-many)
+  eventGuests       EventGuest[]    // explicit guest entries (rsvp/confirmed)
+
+}
+
+model Transaction {
+  id            Int               @id @default(autoincrement())
+  utorid        String
+  type          TransactionType
+  relatedId     Int?     
+  amount        Int?              @default(0)
+  remark        String            @default("")
+  createdBy     String
+
+  // purchase
+  spent         Int?              @default(0)
+  earned        Int?              @default(0)
+  promotionIds  Promotion[] 
+
+  // redemption
+  suspicious    Boolean         @default(false)
+  processed     Boolean         @default(false)
+  processedBy   String?
+  redeemed      Int             @default(0)
+
+  // transfer
+  sender        String?
+  recipient     String?
+  sent          Int?
+
+  // event
+  awarded       Int?
+  eventId       Int?          // if exists, same as relatedId. used to display transactions
+
+  event         Event?          @relation(fields: [eventId], references: [id])
+  customer      User            @relation(fields: [utorid], references: [utorid], "UserTransactions")
+  creator       User            @relation(fields: [createdBy], references: [utorid], "TransactionsMade")
+
+}
+
+model Promotion {
+  id                Int               @id @default(autoincrement())
+  name              String
+  description       String
+  startTime         DateTime          @default(now())
+  endTime           DateTime
+  type              PromotionType
+  minSpending       Int               @default(0)
+  points            Int               @default(0)
+  rate              Float             @default(0)
+
+  owners            User[]
+  transactionsUsed  Transaction[]
+}
+
+// event model: managers create events; organizers (many-to-many) and guests tracked via EventGuest
+model Event {
+  id             Int          @id @default(autoincrement())
+  name           String
+  description    String
+  location       String
+  startTime      DateTime
+  endTime        DateTime
+  capacity       Int?         // nullable = no limit
+  pointsRemain   Int          @default(0) // points left for organizers to distribute
+  pointsAwarded  Int          @default(0) // points already awarded to attendees
+  published      Boolean      @default(false)
+
+  // relations
+  organizers     User[]       // implicit many-to-many with user.organizedEvents
+  guests         EventGuest[] // explicit join table to track rsvp and confirmed
+  awards         Transaction[] // one-to-many, events can have many event transactions
+
+  @@index([startTime])
+}
+
+// explicit join model for guests so we can track rsvp/confirmed and prevent awarding points to unconfirmed users
+model EventGuest {
+  id        Int    @id @default(autoincrement())
+  user      User   @relation(fields: [userId], references: [id])
+  userId    Int
+  event     Event  @relation(fields: [eventId], references: [id])
+  eventId   Int
+
+  rsvp      Boolean @default(true)
+  confirmed Boolean @default(false)
+  // additional fields (e.g. timestamp) can be added if needed
+
+  @@unique([userId, eventId])
+}

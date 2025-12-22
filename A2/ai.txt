@@ -1,0 +1,2 @@
+AI was used to provide suggestions for debugging and code changes, suggestions were reviewed and adapted manually as needed.
+AI generated output was used as guidance for example generating boilerplate, formatting, and suggesting debugging steps. All suggestions were reviewed and adapted manually as needed.
