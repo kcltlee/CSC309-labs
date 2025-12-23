@@ -1,5 +1,7 @@
 # CSC309-labs
 
+All tutorial labs and assignment 1 & 2 for CSC309: Web Development.
+
 # Assignments
 
 ## Assignment 1 - Static Web Page
